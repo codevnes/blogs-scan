@@ -114,6 +114,7 @@ async function main() {
             publishedAt: article.publishedAt,
             scrapedAt: new Date(),
             isProcessed: false,
+            processingAttempts: 0,
           });
           
           console.log(`Đã lưu vào cơ sở dữ liệu: ${article.title}`);
@@ -128,7 +129,7 @@ async function main() {
               if (response) {
                 await ChatGPTResponse.create({
                   articleId: savedArticle.id,
-                  response,
+                  response: response.response || '',
                   promptUsed: promptTemplate,
                   processedAt: new Date(),
                 });
