@@ -45,7 +45,7 @@ export interface PaginatedResponse<T> {
   pagination: PaginationMeta;
 }
 
-export interface ApiResponse<T> {
+export interface ApiResponse {
   message?: string;
   newArticles?: number;
   sourcesProcessed?: number;
@@ -101,7 +101,7 @@ export async function getArticleById(id: number): Promise<Article> {
 }
 
 // Trigger scraping
-export async function triggerScrape(url?: string): Promise<ApiResponse<never>> {
+export async function triggerScrape(url?: string): Promise<ApiResponse> {
   const response = await fetch(`${API_URL}/articles/scrape`, {
     method: 'POST',
     headers: {
@@ -116,7 +116,7 @@ export async function triggerScrape(url?: string): Promise<ApiResponse<never>> {
 }
 
 // Trigger ChatGPT processing
-export async function triggerChatGPTProcessing(): Promise<ApiResponse<never>> {
+export async function triggerChatGPTProcessing(): Promise<ApiResponse> {
   const response = await fetch(`${API_URL}/articles/process`, {
     method: 'POST',
   });
@@ -127,7 +127,7 @@ export async function triggerChatGPTProcessing(): Promise<ApiResponse<never>> {
 }
 
 // Delete article
-export async function deleteArticle(id: number): Promise<ApiResponse<never>> {
+export async function deleteArticle(id: number): Promise<ApiResponse> {
   const response = await fetch(`${API_URL}/articles/${id}`, {
     method: 'DELETE',
   });
@@ -138,7 +138,7 @@ export async function deleteArticle(id: number): Promise<ApiResponse<never>> {
 }
 
 // Delete multiple articles
-export async function deleteMultipleArticles(ids: number[]): Promise<ApiResponse<never>> {
+export async function deleteMultipleArticles(ids: number[]): Promise<ApiResponse> {
   const response = await fetch(`${API_URL}/articles/delete-batch`, {
     method: 'POST',
     headers: {
