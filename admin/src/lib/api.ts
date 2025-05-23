@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:4000/api';
+const API_URL = 'http://103.162.21.193:4000/api';
 
 export interface Article {
   id: number;
