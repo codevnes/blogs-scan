@@ -2,6 +2,8 @@ import express, { Application } from 'express';
 import cors from 'cors';
 import articleRoutes from './routes/articleRoutes';
 import adminRoutes from './routes/adminRoutes';
+import stockRoutes from './routes/stockRoutes';
+import fscoreRoutes from './routes/fscoreRoutes';
 import { paginationMiddleware } from './middleware/pagination';
 
 const app: Application = express();
@@ -23,6 +25,8 @@ app.use(paginationMiddleware);
 // Routes
 app.use('/api/articles', articleRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/stocks', stockRoutes);
+app.use('/api/fscores', fscoreRoutes);
 
 // Home route
 app.get('/', (req, res) => {
@@ -41,6 +45,18 @@ app.get('/', (req, res) => {
       admin: {
         status: '/api/admin/status',
         failedArticles: '/api/admin/failed-articles'
+      },
+      stocks: {
+        analyze: '/api/stocks/analyze (POST)',
+        getAnalysis: '/api/stocks/:symbol (GET)',
+        importData: '/api/stocks/import (POST)'
+      },
+      fscores: {
+        calculate: '/api/fscores/calculate (POST)',
+        getFScore: '/api/fscores/:symbol (GET)',
+        search: '/api/fscores/search (GET)',
+        deleteFScore: '/api/fscores/:symbol (DELETE)',
+        importFScores: '/api/fscores/import (POST)'
       }
     },
     pagination: {

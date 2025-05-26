@@ -1,11 +1,13 @@
 import sequelize from '../config/database';
 import Article from './Article';
 import ChatGPTResponse from './ChatGPTResponse';
+import StockAnalysis from './StockAnalysis';
 
 // Initialize models
 const models = {
   Article,
   ChatGPTResponse,
+  StockAnalysis,
 };
 
 // Initialize database
